@@ -5,25 +5,6 @@ import com.opencsv.CSVReader
 import java.io.File
 import java.io.FileReader
 
-//data class InventoryItem(
-//    val PHYSINVENTORY: String,
-//    val FISCALYEAR: String,
-//    val ITEM: String,
-//    val MATERIAL: String,
-//    val EAN11: String,
-//    val ENTRY_QNT: String,
-//    val ENTRY_UOM: String,
-//    val ZERO_COUNT: String,
-//    val BASE_UOM: String
-//)
-//
-//data class SerialCount(
-//    val PHYSINVENTORY: String,
-//    val FISCALYEAR: String,
-//    val ITEM: String,
-//    val SERIALNO: String
-//)
-
 fun readCsvToRequestBody(filePath: String, outputJsonPath: String): String {
     val reader = CSVReader(FileReader(filePath))
     val lines = reader.readAll()

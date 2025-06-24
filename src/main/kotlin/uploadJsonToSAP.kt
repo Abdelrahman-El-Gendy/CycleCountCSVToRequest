@@ -1,20 +1,21 @@
 package org.example
 
 import okhttp3.*
-import com.google.gson.GsonBuilder
 import okhttp3.MediaType.Companion.toMediaType
+import org.example.Constants.CREATE_CYCLE_COUNT_QAS_TEST
+import org.example.Constants.PASSWORD
+import org.example.Constants.USERNAME
 import java.io.File
 import java.util.Base64
 
 fun uploadJsonToSAP(jsonFilePath: String) {
-    val url = "http://prd-erp-dia.hyperone.com:8000/sap/bc/zppc_ccount_up/ZCREATE_CYCLE_COUNT/?sap-client=200"
 
     // Read JSON file
     val json = File(jsonFilePath).readText(Charsets.UTF_8)
 
     // Basic auth (replace with actual credentials)
-    val username = "ppcuser"
-    val password = "ppc1234"
+    val username = USERNAME
+    val password = PASSWORD
     val credentials = "$username:$password"
     val authHeader = "Basic " + Base64.getEncoder().encodeToString(credentials.toByteArray())
 
@@ -24,7 +25,7 @@ fun uploadJsonToSAP(jsonFilePath: String) {
 
     // Build HTTP request
     val request = Request.Builder()
-        .url(url)
+        .url(CREATE_CYCLE_COUNT_QAS_TEST)
         .addHeader("Content-Type", "application/json")
         .addHeader("Accept", "application/json")
         .addHeader("Authorization", authHeader)
