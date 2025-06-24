@@ -6,9 +6,8 @@ import org.example.Constants.JSON_FILE_PATH
 fun main() {
 
     //Reading CSV file and Converting it to Json file
-    val savedPath = readCsvToRequestBody(CSV_FILE_PATH, JSON_FILE_PATH)
-    println("✅ JSON exported to: $savedPath")
-
+//    val savedPath = readCsvToRequestBody(CSV_FILE_PATH, JSON_FILE_PATH)
+//    println("✅ JSON exported to: $savedPath")
 
 
     /**
@@ -19,5 +18,6 @@ fun main() {
 //    val jsonFilePath = "C:\\Users\\Abdelrahman\\Downloads\\PPC_cyclecount_202506220436"
 //    val jsonFilePath = "C:\\Users\\Abdelrahman\\Downloads\\PPC_cyclecount_202506220532"
 //    val jsonFilePath = "C:\\Users\\Abdelrahman\\Downloads\\PPC_cyclecount_202506220533"
-//    uploadJsonToSAP(jsonFilePath = "")
+    val sapClient = SapClient()
+    sapClient.uploadJsonToSAP(jsonFilePath = "C:\\Users\\Abdelrahman\\Downloads\\test.json")
 }

@@ -1,4 +1,4 @@
-package org.example
+package org.example.data
 data class SerialCount(
     val PHYSINVENTORY: String,
     val FISCALYEAR: String,

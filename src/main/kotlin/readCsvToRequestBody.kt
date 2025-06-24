@@ -2,6 +2,7 @@ package org.example
 
 import com.google.gson.GsonBuilder
 import com.opencsv.CSVReader
+import org.example.data.InventoryItem
 import java.io.File
 import java.io.FileReader
 
@@ -12,7 +13,6 @@ fun readCsvToRequestBody(filePath: String, outputJsonPath: String): String {
     val dataLines = lines.drop(1)
 
     val items = mutableListOf<InventoryItem>()
-    val serials = mutableListOf<SerialCount>()
 
     dataLines.forEach { row ->
         val rowMap = headers.zip(row).toMap()
