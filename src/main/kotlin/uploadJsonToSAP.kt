@@ -9,20 +9,6 @@ import org.example.Constants.USERNAME
 import java.io.File
 import java.net.UnknownHostException
 import java.util.Base64
-import java.util.concurrent.ConcurrentHashMap
-
-// Cookie storage implementation
-object InMemoryCookieJar : CookieJar {
-    private val cookieStore = ConcurrentHashMap<String, List<Cookie>>()
-
-    override fun saveFromResponse(url: HttpUrl, cookies: List<Cookie>) {
-        cookieStore[url.host] = cookies
-    }
-
-    override fun loadForRequest(url: HttpUrl): List<Cookie> {
-        return cookieStore[url.host] ?: emptyList()
-    }
-}
 
 class SapClient {
     private var csrfToken: String? = null
@@ -32,12 +18,10 @@ class SapClient {
         .connectTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
         .readTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
         .build()
-
     private fun getAuthHeader(): String {
         val credentials = "$USERNAME:$PASSWORD"
         return "Basic " + Base64.getEncoder().encodeToString(credentials.toByteArray())
     }
-
     private fun getCsrfToken(): String? {
         // Return existing token if we have one
         if (!csrfToken.isNullOrEmpty()) {
@@ -76,7 +60,6 @@ class SapClient {
             return null
         }
     }
-
     fun uploadJsonToSAP(jsonFilePath: String) {
         try {
             // First get the CSRF token
